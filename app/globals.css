@@ -44,7 +44,7 @@
   --text-preset-6--line-height: 15px;
   --text-preset-6--letter-spacing: 1.85px;
 
-  --shadow-button: 0 20px 50px --alpha(var(--color-orange-500) / 25%);
+  --shadow-soft: 0 20px 50px --alpha(var(--color-orange-500) / 25%);
 }
 
 @theme inline {

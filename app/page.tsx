@@ -1,4 +1,5 @@
 import IconCart from '@/assets/images/icon-cart.svg'
+import { BasketCard } from '@/components/basket-card/basket-card'
 import { Button } from '@/components/ui/button'
 
 export default function Home() {
@@ -8,6 +9,8 @@ export default function Home() {
         <IconCart className="size-[17.46px]" />
         Add to cart
       </Button>
+
+      <BasketCard />
     </div>
   )
 }
