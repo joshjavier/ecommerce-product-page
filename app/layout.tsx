@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Kumbh_Sans } from 'next/font/google'
+
 import './globals.css'
 
 const kumbhSans = Kumbh_Sans({
