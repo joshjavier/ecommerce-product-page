@@ -43,6 +43,8 @@
   --text-preset-6--font-weight: 700;
   --text-preset-6--line-height: 15px;
   --text-preset-6--letter-spacing: 1.85px;
+
+  --shadow-button: 0 20px 50px --alpha(var(--color-orange-500) / 25%);
 }
 
 @theme inline {
@@ -158,6 +160,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-grey-950 font-sans;
   }
 }
