@@ -15,3 +15,9 @@ export interface Item {
 export interface Cart {
   items: Pick<Item, 'thumbnail' | 'name' | 'price' | 'quantity' | 'total'>[]
 }
+
+export interface User {
+  name: string
+  image: string
+  cart: Cart
+}
