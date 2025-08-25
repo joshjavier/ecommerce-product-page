@@ -28,7 +28,7 @@ export function BasketCard({ items = [] }: BasketCardProps) {
             {items.map((item) => (
               <CartItem key={item.name} {...item} />
             ))}
-            <Button className="shadow-none!">Checkout</Button>
+            <Button className="shadow-none">Checkout</Button>
           </div>
         )}
       </div>

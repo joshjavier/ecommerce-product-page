@@ -12,6 +12,7 @@ const twMerge = extendTailwindMerge({
         'preset-5',
         'preset-6',
       ],
+      shadow: ['soft'],
     },
   },
 })
