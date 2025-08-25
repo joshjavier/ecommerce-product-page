@@ -54,7 +54,7 @@ export default function Home() {
         ]}
       />
 
-      <QuantityBox />
+      <QuantityBox defaultValue={0} thousandSeparator="," />
     </div>
   )
 }
