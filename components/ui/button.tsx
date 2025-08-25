@@ -18,6 +18,8 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-grey-950 underline-offset-4 hover:underline rounded-none cursor-pointer',
+        thumb:
+          'rounded-[10px] overflow-hidden data-selected:ring-2 data-selected:ring-orange-500',
       },
       size: {
         default: 'min-h-700 px-900 py-[15px]',
@@ -36,6 +38,11 @@ const buttonVariants = cva(
         size: 'icon',
         class:
           'text-grey-300 hover:text-grey-500 focus-visible:text-grey-500 focus-visible:ring-0',
+      },
+      {
+        variant: 'thumb',
+        size: 'default',
+        class: 'p-0',
       },
     ],
   },

@@ -24,10 +24,14 @@ type CarouselProps = {
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
   api: ReturnType<typeof useEmblaCarousel>[1]
+  thumbsRef: ReturnType<typeof useEmblaCarousel>[0]
+  thumbsApi: ReturnType<typeof useEmblaCarousel>[1]
   scrollPrev: () => void
   scrollNext: () => void
+  scrollTo: (index: number, jump?: boolean) => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  selectedIndex: number
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -58,13 +62,19 @@ function Carousel({
     },
     plugins,
   )
+  const [thumbsRef, thumbsApi] = useEmblaCarousel({
+    containScroll: 'keepSnaps',
+    dragFree: true,
+  })
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return
     setCanScrollPrev(api.canScrollPrev())
     setCanScrollNext(api.canScrollNext())
+    setSelectedIndex(api.selectedScrollSnap())
   }, [])
 
   const scrollPrev = React.useCallback(() => {
@@ -74,6 +84,13 @@ function Carousel({
   const scrollNext = React.useCallback(() => {
     api?.scrollNext()
   }, [api])
+
+  const scrollTo = React.useCallback(
+    (index: number, jump?: boolean) => {
+      api?.scrollTo(index, jump)
+    },
+    [api],
+  )
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -109,13 +126,17 @@ function Carousel({
       value={{
         carouselRef,
         api: api,
+        thumbsRef,
+        thumbsApi,
         opts,
         orientation:
           orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollPrev,
         scrollNext,
+        scrollTo,
         canScrollPrev,
         canScrollNext,
+        selectedIndex,
       }}
     >
       <div
@@ -168,6 +189,55 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       )}
       {...props}
     />
+  )
+}
+
+function CarouselThumbscroll({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  const { thumbsRef } = useCarousel()
+
+  return (
+    <div
+      ref={thumbsRef}
+      className="overflow-hidden max-lg:hidden"
+      data-slot="carousel-thumbscroll"
+    >
+      <div className={cn('flex gap-400', className)} {...props} />
+    </div>
+  )
+}
+
+function CarouselThumb({
+  className,
+  index,
+  image,
+  ...props
+}: React.ComponentProps<'div'> & { index: number; image: string }) {
+  const { scrollTo, selectedIndex } = useCarousel()
+  const selected = index === selectedIndex
+
+  return (
+    <div
+      data-slot="carousel-thumb"
+      className={cn('min-w-0 shrink-0 grow-0 basis-[88px]', className)}
+      {...props}
+    >
+      <Button
+        onClick={() => scrollTo(index)}
+        variant="thumb"
+        data-selected={selected || undefined}
+        className="group"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt=""
+          className="h-full w-full object-cover transition-opacity group-hover:opacity-50 group-data-selected:opacity-25"
+        />
+      </Button>
+    </div>
   )
 }
 
@@ -239,6 +309,8 @@ export {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselThumbscroll,
+  CarouselThumb,
   CarouselPrevious,
   CarouselNext,
 }
