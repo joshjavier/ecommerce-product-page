@@ -1,6 +1,7 @@
 import IconCart from '@/assets/images/icon-cart.svg'
 import { BasketCard } from '@/components/basket-card/basket-card'
 import { ProductImageCarousel } from '@/components/product-image-carousel/product-image-carousel'
+import { QuantityBox } from '@/components/quantity-box/quantity-box'
 import { Button } from '@/components/ui/button'
 
 export default function Home() {
@@ -52,6 +53,8 @@ export default function Home() {
           },
         ]}
       />
+
+      <QuantityBox />
     </div>
   )
 }
