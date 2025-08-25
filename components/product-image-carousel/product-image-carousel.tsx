@@ -1,3 +1,4 @@
+import { ProductImage } from '@/interfaces'
 import {
   Carousel,
   CarouselContent,
@@ -8,16 +9,17 @@ import {
   CarouselThumbscroll,
 } from '../ui/carousel'
 
-export function ProductImageCarousel() {
+interface ProductImageCarouselProps {
+  images: ProductImage[]
+}
+
+export function ProductImageCarousel({ images }: ProductImageCarouselProps) {
+  const carouselImages = images.map((i) => i.url)
+  const thumbnails = images.map((i) => i.thumbnailUrl)
   return (
     <Carousel>
       <CarouselContent className="aspect-[1.25] sm:aspect-[calc(608/290)] lg:aspect-[calc(448/445)]">
-        {[
-          '/images/image-product-1.jpg',
-          '/images/image-product-2.jpg',
-          '/images/image-product-3.jpg',
-          '/images/image-product-4.jpg',
-        ].map((image) => (
+        {carouselImages.map((image) => (
           <CarouselItem key={image}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -31,12 +33,7 @@ export function ProductImageCarousel() {
       <CarouselPrevious className="lg:hidden" />
       <CarouselNext className="lg:hidden" />
       <CarouselThumbscroll className="mt-400 h-[88px]">
-        {[
-          '/images/image-product-1-thumbnail.jpg',
-          '/images/image-product-2-thumbnail.jpg',
-          '/images/image-product-3-thumbnail.jpg',
-          '/images/image-product-4-thumbnail.jpg',
-        ].map((image, index) => (
+        {thumbnails.map((image, index) => (
           <CarouselThumb key={image} index={index} image={image} />
         ))}
       </CarouselThumbscroll>

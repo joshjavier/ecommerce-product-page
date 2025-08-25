@@ -1,5 +1,11 @@
+export interface ProductImage {
+  url: string
+  thumbnailUrl: string
+}
+
 export interface Item {
-  image: string
+  thumbnail: string
+  images: ProductImage[]
   name: string
   price: number
   quantity: number
@@ -7,5 +13,5 @@ export interface Item {
 }
 
 export interface Cart {
-  items: Item[]
+  items: Pick<Item, 'thumbnail' | 'name' | 'price' | 'quantity' | 'total'>[]
 }

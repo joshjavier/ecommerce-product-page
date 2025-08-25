@@ -16,14 +16,14 @@ export default function Home() {
       <BasketCard
         items={[
           {
-            image: '/images/image-product-1-thumbnail.jpg',
+            thumbnail: '/images/image-product-1-thumbnail.jpg',
             name: 'Fall Limited Edition Sneakers',
             price: 125,
             quantity: 3,
             total: 375,
           },
           {
-            image: '/images/image-product-1-thumbnail.jpg',
+            thumbnail: '/images/image-product-1-thumbnail.jpg',
             name: 'Fall Ultra Limited Edition Sneakers',
             price: 125,
             quantity: 3,
@@ -32,7 +32,26 @@ export default function Home() {
         ]}
       />
 
-      <ProductImageCarousel />
+      <ProductImageCarousel
+        images={[
+          {
+            url: '/images/image-product-1.jpg',
+            thumbnailUrl: '/images/image-product-1-thumbnail.jpg',
+          },
+          {
+            url: '/images/image-product-2.jpg',
+            thumbnailUrl: '/images/image-product-2-thumbnail.jpg',
+          },
+          {
+            url: '/images/image-product-3.jpg',
+            thumbnailUrl: '/images/image-product-3-thumbnail.jpg',
+          },
+          {
+            url: '/images/image-product-4.jpg',
+            thumbnailUrl: '/images/image-product-4-thumbnail.jpg',
+          },
+        ]}
+      />
     </div>
   )
 }

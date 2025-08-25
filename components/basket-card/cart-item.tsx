@@ -4,10 +4,13 @@ import { Item } from '@/interfaces'
 import { formatNumber } from '@/lib/format'
 import { Button } from '../ui/button'
 
-type CartItemProps = Item
+type CartItemProps = Pick<
+  Item,
+  'thumbnail' | 'name' | 'price' | 'quantity' | 'total'
+>
 
 export function CartItem({
-  image,
+  thumbnail,
   name,
   price,
   quantity,
@@ -20,7 +23,7 @@ export function CartItem({
   return (
     <div className="flex gap-200 px-[1.5px]">
       <Image
-        src={image}
+        src={thumbnail}
         alt=""
         className="h-[50px] w-[50px] shrink-0 rounded-sm"
         width={50}
