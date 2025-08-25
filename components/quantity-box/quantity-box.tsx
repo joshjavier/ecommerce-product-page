@@ -128,11 +128,12 @@ export const QuantityBox = forwardRef<HTMLInputElement, QuantityBoxProps>(
           size="icon"
           className="h-full w-[39px] cursor-pointer rounded-e-none bg-transparent text-orange-500 shadow-none hover:bg-transparent hover:text-orange-300"
           tabIndex={-1}
-          title="Decrease value"
+          aria-hidden="true"
         >
           <IconMinus className="size-3" aria-hidden="true" />
         </Button>
         <NumericFormat
+          role="spinbutton"
           value={value}
           onValueChange={handleChange}
           thousandSeparator={thousandSeparator}
@@ -158,7 +159,7 @@ export const QuantityBox = forwardRef<HTMLInputElement, QuantityBoxProps>(
           size="icon"
           className="h-full w-[39px] cursor-pointer rounded-s-none bg-transparent text-orange-500 shadow-none hover:bg-transparent hover:text-orange-300"
           tabIndex={-1}
-          title="Increase value"
+          aria-hidden="true"
         >
           <IconPlus className="size-3" aria-hidden="true" />
         </Button>

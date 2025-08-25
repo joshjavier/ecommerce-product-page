@@ -54,7 +54,11 @@ export default function Home() {
         ]}
       />
 
-      <QuantityBox defaultValue={0} thousandSeparator="," />
+      <QuantityBox
+        defaultValue={0}
+        thousandSeparator=","
+        aria-label="Quantity"
+      />
     </div>
   )
 }
