@@ -13,50 +13,57 @@ export default function Home() {
     <div className="min-h-svh">
       <Header />
       <main>
-        <div className="flex flex-col pb-1000 sm:gap-600 sm:px-1000 sm:pt-600">
-          <ProductImageCarousel images={product.images} />
+        <div className="mx-auto box-content max-w-2xl sm:px-1000 lg:max-w-[1021px]">
+          <div className="grid pb-1000 sm:gap-600 sm:pt-600 lg:grid-cols-2 lg:pt-1200">
+            <ProductImageCarousel
+              images={product.images}
+              className="lg:max-w-[448px]"
+            />
 
-          {/* Product Details */}
-          <div className="space-y-300 max-sm:p-300">
-            {/* Product Info */}
-            <div className="space-y-200 sm:space-y-300">
-              <p className="text-preset-6 text-grey-500 uppercase sm:text-preset-5">
-                {product.company}
-              </p>
-              <h1 className="text-preset-2 sm:text-preset-1">{product.name}</h1>
-              <p className="text-preset-4 text-grey-500 sm:text-preset-3">
-                {product.description}
-              </p>
-            </div>
-            {/* Price Section */}
-            <div className="flex items-start justify-between gap-100 sm:flex-col">
-              <div className="flex items-start gap-200 sm:gap-300">
-                <p className="text-preset-2">
-                  {formatNumber(product.price, {
+            {/* Product Details */}
+            <div className="space-y-400 self-center justify-self-end max-sm:p-300 sm:max-lg:space-y-300 lg:max-w-[445px]">
+              {/* Product Info */}
+              <div className="space-y-200 sm:space-y-300">
+                <p className="text-preset-6 text-grey-500 uppercase sm:text-preset-5">
+                  {product.company}
+                </p>
+                <h1 className="text-preset-2 sm:text-preset-1 lg:mb-400">
+                  {product.name}
+                </h1>
+                <p className="text-preset-4 text-grey-500 sm:text-preset-3">
+                  {product.description}
+                </p>
+              </div>
+              {/* Price Section */}
+              <div className="flex items-start justify-between gap-100 sm:flex-col">
+                <div className="flex items-start gap-200 sm:gap-300">
+                  <p className="text-preset-2">
+                    {formatNumber(product.price, {
+                      style: 'currency',
+                      currency: 'USD',
+                    })}
+                  </p>
+                  <DiscountBadge discount={product.discount} />
+                </div>
+                <div className="text-preset-3 font-bold text-grey-500 line-through">
+                  {formatNumber(product.originalPrice, {
                     style: 'currency',
                     currency: 'USD',
                   })}
-                </p>
-                <DiscountBadge discount={product.discount} />
+                </div>
               </div>
-              <div className="text-preset-3 font-bold text-grey-500 line-through">
-                {formatNumber(product.originalPrice, {
-                  style: 'currency',
-                  currency: 'USD',
-                })}
+              {/* Quantity and Add to Cart */}
+              <div className="grid gap-200 sm:grid-cols-2 sm:max-lg:gap-100 lg:grid-cols-[157px_1fr]">
+                <QuantityBox
+                  defaultValue={0}
+                  thousandSeparator=","
+                  aria-label="Quantity"
+                />
+                <Button>
+                  <IconCart className="size-[17.46px]" aria-hidden="true" />
+                  Add to cart
+                </Button>
               </div>
-            </div>
-            {/* Quantity and Add to Cart */}
-            <div className="grid gap-200 sm:grid-cols-2 sm:gap-100">
-              <QuantityBox
-                defaultValue={0}
-                thousandSeparator=","
-                aria-label="Quantity"
-              />
-              <Button>
-                <IconCart className="size-[17.46px]" aria-hidden="true" />
-                Add to cart
-              </Button>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { ProductImage } from '@/interfaces'
 import {
   Carousel,
@@ -13,11 +14,14 @@ interface ProductImageCarouselProps {
   images: ProductImage[]
 }
 
-export function ProductImageCarousel({ images }: ProductImageCarouselProps) {
+export function ProductImageCarousel({
+  images,
+  ...props
+}: ProductImageCarouselProps & React.ComponentProps<'div'>) {
   const carouselImages = images.map((i) => i.url)
   const thumbnails = images.map((i) => i.thumbnailUrl)
   return (
-    <Carousel>
+    <Carousel {...props}>
       <CarouselContent className="aspect-[1.25] sm:aspect-[calc(608/290)] lg:aspect-[calc(448/445)]">
         {carouselImages.map((image) => (
           <CarouselItem key={image}>
