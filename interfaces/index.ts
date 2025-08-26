@@ -21,3 +21,14 @@ export interface User {
   image: string
   cart: Cart
 }
+
+export interface Product {
+  name: string
+  company: string
+  description: string
+  price: number
+  discount: number
+  originalPrice: number
+  images: ProductImage[]
+  thumbnail?: string
+}
