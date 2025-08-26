@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import IconDelete from '@/assets/images/icon-delete.svg'
+import { Button } from '@/components/ui/button'
 import { Item } from '@/interfaces'
 import { formatNumber } from '@/lib/format'
-import { Button } from '../ui/button'
 
 type CartItemProps = Pick<
   Item,

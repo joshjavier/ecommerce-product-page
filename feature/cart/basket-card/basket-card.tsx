@@ -1,5 +1,5 @@
+import { Button } from '@/components/ui/button'
 import { Cart } from '@/interfaces'
-import { Button } from '../ui/button'
 import { CartItem } from './cart-item'
 
 function EmptyCart() {
