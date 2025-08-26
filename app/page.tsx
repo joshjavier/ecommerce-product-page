@@ -13,7 +13,7 @@ export default function Home() {
     <div className="min-h-svh">
       <Header />
       <main>
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-1000">
           <ProductImageCarousel images={product.images} />
 
           {/* Product Details */}
