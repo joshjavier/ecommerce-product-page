@@ -1,6 +1,6 @@
-import IconCart from '@/assets/images/icon-cart.svg'
 import IconMenu from '@/assets/images/icon-menu.svg'
 import Logo from '@/assets/images/logo.svg'
+import { ShoppingCart } from '@/feature/cart/shopping-cart'
 import { Button } from '../ui/button'
 import { UserAvatar } from '../user-avatar/user-avatar'
 
@@ -24,14 +24,7 @@ export function Header() {
 
           {/* Right */}
           <div className="flex items-center gap-300 sm:gap-600">
-            <Button
-              variant="secondary"
-              size="icon"
-              aria-label="Shopping cart"
-              className="size-[22px] cursor-pointer rounded-none bg-transparent text-grey-500 hover:bg-transparent hover:text-grey-950 aria-pressed:text-grey-950"
-            >
-              <IconCart aria-hidden="true" className="size-[22px]" />
-            </Button>
+            <ShoppingCart />
             <UserAvatar />
           </div>
         </div>
