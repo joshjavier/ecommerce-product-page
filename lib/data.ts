@@ -10,6 +10,7 @@ export function getCurrentUser(): User {
 
 export function getProductDetails(): Product {
   return {
+    sku: 'SHO-SNE-RUB-LOW',
     name: 'Fall Limited Edition Sneakers',
     company: 'Sneaker Company',
     description:

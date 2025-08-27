@@ -4,8 +4,9 @@ export interface ProductImage {
 }
 
 export interface Item {
+  sku: string
   thumbnail: string
-  images: ProductImage[]
+  // images: ProductImage[]
   name: string
   price: number
   quantity: number
@@ -23,6 +24,7 @@ export interface User {
 }
 
 export interface Product {
+  sku: string
   name: string
   company: string
   description: string

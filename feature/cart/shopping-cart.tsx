@@ -1,3 +1,6 @@
+'use client'
+
+import { useAtomValue } from 'jotai'
 import IconCart from '@/assets/images/icon-cart.svg'
 import { Button } from '@/components/ui/button'
 import {
@@ -6,8 +9,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { BasketCard } from './basket-card/basket-card'
+import { cartItemsAtom } from './state'
 
 export function ShoppingCart() {
+  const cartItems = useAtomValue(cartItemsAtom)
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -26,7 +31,7 @@ export function ShoppingCart() {
         className="w-[min(calc(360px+16px),var(--radix-popover-content-available-width))] bg-transparent px-2 pb-2 shadow-none"
       >
         <div>
-          <BasketCard />
+          <BasketCard itemAtoms={cartItems} />
         </div>
       </PopoverContent>
     </Popover>

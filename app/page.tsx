@@ -1,8 +1,7 @@
-import IconCart from '@/assets/images/icon-cart.svg'
 import { Header } from '@/components/header/header'
 import { ProductImageCarousel } from '@/components/product-image-carousel/product-image-carousel'
 import { QuantityBox } from '@/components/quantity-box/quantity-box'
-import { Button } from '@/components/ui/button'
+import { AddToCart } from '@/feature/cart'
 import { DiscountBadge } from '@/feature/product/discount-badge'
 import { getProductDetails } from '@/lib/data'
 import { formatNumber } from '@/lib/format'
@@ -54,15 +53,7 @@ export default function Home() {
               </div>
               {/* Quantity and Add to Cart */}
               <div className="grid gap-200 sm:grid-cols-2 sm:max-lg:gap-100 lg:grid-cols-[157px_1fr]">
-                <QuantityBox
-                  defaultValue={0}
-                  thousandSeparator=","
-                  aria-label="Quantity"
-                />
-                <Button>
-                  <IconCart className="size-[17.46px]" aria-hidden="true" />
-                  Add to cart
-                </Button>
+                <AddToCart />
               </div>
             </div>
           </div>

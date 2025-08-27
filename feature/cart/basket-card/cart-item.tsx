@@ -1,21 +1,18 @@
+'use client'
+
 import Image from 'next/image'
+import { useAtomValue } from 'jotai'
 import IconDelete from '@/assets/images/icon-delete.svg'
 import { Button } from '@/components/ui/button'
-import { Item } from '@/interfaces'
 import { formatNumber } from '@/lib/format'
+import { ItemAtom } from '../state'
 
-type CartItemProps = Pick<
-  Item,
-  'thumbnail' | 'name' | 'price' | 'quantity' | 'total'
->
+type CartItemProps = {
+  itemAtom: ItemAtom
+}
 
-export function CartItem({
-  thumbnail,
-  name,
-  price,
-  quantity,
-  total,
-}: CartItemProps) {
+export function CartItem({ itemAtom }: CartItemProps) {
+  const { name, price, quantity, thumbnail, total } = useAtomValue(itemAtom)
   const options: Intl.NumberFormatOptions = {
     style: 'currency',
     currency: 'USD',
