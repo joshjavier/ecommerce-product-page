@@ -10,6 +10,12 @@ export const cartItemsAtom = atom((get) => {
   return Array.from(itemAtoms.values())
 })
 
+export const itemCountAtom = atom((get) => {
+  const itemAtoms = get(itemAtomsAtom)
+  const items = Array.from(itemAtoms.values()).map((atom) => get(atom))
+  return items.reduce((q, i) => q + i.quantity, 0)
+})
+
 export const addToCartAtom = atom(null, (_get, set, item: Item) => {
   set(itemAtomsAtom, (prev) => {
     const itemInCart = prev.get(item.sku)
