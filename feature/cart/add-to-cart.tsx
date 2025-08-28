@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { useAtom, useSetAtom } from 'jotai'
 import IconCart from '@/assets/images/icon-cart.svg'
 import { QuantityBox } from '@/components/quantity-box/quantity-box'
@@ -11,15 +12,21 @@ import { addToCartAtom, quantityAtom } from './state'
 export function AddToCart() {
   const addToCart = useSetAtom(addToCartAtom)
   const [quantity, setQuantity] = useAtom(quantityAtom)
-  const onClick = () => {
-    const { company, description, discount, originalPrice, images, ...item } =
-      getProductDetails()
-    if (!item.thumbnail) {
-      item.thumbnail = images[0].thumbnailUrl
+  const onClick = useCallback(() => {
+    if (quantity <= 0) {
+      return
     }
-    addToCart({ ...item, quantity, total: item.price * quantity } as Item)
-    console.log('item added to cart')
-  }
+    const { sku, name, price, images, thumbnail } = getProductDetails()
+    const item: Item = {
+      sku,
+      name,
+      price,
+      quantity,
+      total: price * quantity,
+      thumbnail: thumbnail ?? images[0].thumbnailUrl,
+    }
+    addToCart(item)
+  }, [addToCart, quantity])
   return (
     <>
       <QuantityBox

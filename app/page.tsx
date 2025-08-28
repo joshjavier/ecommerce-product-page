@@ -1,6 +1,5 @@
 import { Header } from '@/components/header/header'
 import { ProductImageCarousel } from '@/components/product-image-carousel/product-image-carousel'
-import { QuantityBox } from '@/components/quantity-box/quantity-box'
 import { AddToCart } from '@/feature/cart'
 import { DiscountBadge } from '@/feature/product/discount-badge'
 import { getProductDetails } from '@/lib/data'

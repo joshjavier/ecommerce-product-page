@@ -30,8 +30,9 @@ export const addToCartAtom = atom(null, (_get, set, item: Item) => {
       return prev
     }
 
-    prev.set(item.sku, atom(item))
-    return prev
+    const newMap = new Map(prev)
+    newMap.set(item.sku, atom(item))
+    return newMap
   })
 })
 
