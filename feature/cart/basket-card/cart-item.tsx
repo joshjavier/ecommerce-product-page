@@ -1,18 +1,20 @@
 'use client'
 
 import Image from 'next/image'
-import { useAtomValue } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import IconDelete from '@/assets/images/icon-delete.svg'
 import { Button } from '@/components/ui/button'
 import { formatNumber } from '@/lib/format'
-import { ItemAtom } from '../state'
+import { ItemAtom, removeFromCartAtom } from '../state'
 
 type CartItemProps = {
   itemAtom: ItemAtom
 }
 
 export function CartItem({ itemAtom }: CartItemProps) {
-  const { name, price, quantity, thumbnail, total } = useAtomValue(itemAtom)
+  const { sku, name, price, quantity, thumbnail, total } =
+    useAtomValue(itemAtom)
+  const removeFromCart = useSetAtom(removeFromCartAtom)
   const options: Intl.NumberFormatOptions = {
     style: 'currency',
     currency: 'USD',
@@ -44,6 +46,7 @@ export function CartItem({ itemAtom }: CartItemProps) {
           variant="link"
           size="icon"
           className="w-3.5"
+          onClick={() => removeFromCart(sku)}
         >
           <IconDelete aria-hidden="true" />
         </Button>

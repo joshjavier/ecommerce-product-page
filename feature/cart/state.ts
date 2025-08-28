@@ -36,4 +36,15 @@ export const addToCartAtom = atom(null, (_get, set, item: Item) => {
   })
 })
 
+export const removeFromCartAtom = atom(null, (_get, set, sku: string) => {
+  set(itemAtomsAtom, (prev) => {
+    if (!prev.has(sku)) {
+      return prev
+    }
+    const newMap = new Map(prev)
+    newMap.delete(sku)
+    return newMap
+  })
+})
+
 export const quantityAtom = atom(0)
